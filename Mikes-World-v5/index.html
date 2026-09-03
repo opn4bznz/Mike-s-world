@@ -1,53 +1,264 @@
+<!-- filepath: c:\Users\PC\Downloads\Mikes-World-prototype-v5-no-double (1)\Mikes-World-v5\index.html -->
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mike's World</title>
+
 <style>
-*{box-sizing:border-box}html,body{margin:0;background:#071a10;color:#fff;font-family:Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:#071a10;color:#fff;font-family:Arial,sans-serif}
 .art{position:relative;min-height:100vh;background:url("assets/mikes-world-concept.png") center top/cover no-repeat;overflow:hidden}
 .title{position:absolute;top:3%;left:50%;transform:translateX(-50%);font:700 clamp(3rem,7vw,7rem) "Brush Script MT","Segoe Script",cursive;color:#1264c0;text-shadow:0 3px #fff,0 7px 18px #001b44;z-index:3;white-space:nowrap}
 .grove{position:absolute;width:23%;height:28%;z-index:4;border:0;background:transparent;cursor:pointer;border-radius:45%}
 .grove:hover{box-shadow:0 0 30px rgba(255,220,60,.35);outline:3px solid rgba(255,220,60,.45)}
 .g1{left:1%;top:31%}.g2{right:1%;top:31%}.g3{left:1%;top:63%}.g4{right:1%;top:63%}
+
 #hang{position:absolute;z-index:7;left:79.2%;top:8.2%;width:18%;max-width:300px;pointer-events:none;transform-origin:50% 35%;filter:drop-shadow(0 10px 8px rgba(0,0,0,.35));transition:left 1.2s cubic-bezier(.2,.8,.2,1),top 1.2s cubic-bezier(.2,.8,.2,1),width 1.2s}
-#hang img{width:100%;display:block}.swing{animation:pendulum .9s ease-in-out 2}.beat{animation:beat .18s ease-in-out 6}
-@keyframes pendulum{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(10deg) translateY(-12px)}}
+#hang img{width:100%;display:block}
+.swing{animation:pendulum 2.2s ease-in-out 1}
+.beat{animation:beat .18s ease-in-out 6}
+@keyframes pendulum{
+  0%{transform:rotate(-4deg)}
+  25%{transform:rotate(2deg) translateY(-4px)}
+  50%{transform:rotate(9deg) translateY(-10px)}
+  75%{transform:rotate(2deg) translateY(-4px)}
+  100%{transform:rotate(-4deg)}
+}
 @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.08) translateY(3px)}}
+
 .tunnel{position:fixed;inset:0;z-index:20;display:none;background:radial-gradient(ellipse at center,#6b4b2b 0,#25170e 35%,#050403 75%);overflow:hidden}
-.tunnel.on{display:block}.tunnel:before{content:"";position:absolute;inset:-30%;background:repeating-radial-gradient(ellipse at center,transparent 0 5%,rgba(255,200,90,.08) 5.5% 6%,transparent 6.5% 12%);animation:zoom 3s linear forwards}
+.tunnel.on{display:block}
+.tunnel:before{content:"";position:absolute;inset:-30%;background:repeating-radial-gradient(ellipse at center,transparent 0 5%,rgba(255,200,90,.08) 5.5% 6%,transparent 6.5% 12%);animation:zoom 3s linear forwards}
 #run{position:absolute;left:50%;bottom:10%;width:180px;transform:translateX(-50%) scale(.45);animation:runin 3s ease-in forwards}
-#run img{width:100%}@keyframes zoom{to{transform:scale(2.8)}}@keyframes runin{0%{transform:translateX(-50%) scale(.4)}100%{transform:translateX(-50%) scale(1.6)}}
+#run img{width:100%}
+@keyframes zoom{to{transform:scale(2.8)}}
+@keyframes runin{0%{transform:translateX(-50%) scale(.4)}100%{transform:translateX(-50%) scale(1.6)}}
+
 .cave{position:fixed;inset:0;z-index:30;display:none;place-items:center;padding:5vw;background:radial-gradient(circle,#4e3822,#1c130c 60%,#050403)}
-.cave.open{display:grid}.panel{max-width:1000px;width:100%;padding:42px;border-radius:28px;background:rgba(9,17,11,.94);border:2px solid #cdb54d;box-shadow:0 25px 80px #000;position:relative}.panel h2{font:700 clamp(2.5rem,5vw,5rem) "Brush Script MT","Segoe Script",cursive;color:#ffd84d;margin:0}.panel p{font-size:1.1rem;line-height:1.6}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:18px;border:1px solid #6f6334;border-radius:18px;background:#112419}.card h3{color:#ffd84d}.back{position:absolute;right:16px;top:16px;padding:10px 14px;border:0;border-radius:20px;background:#ffd84d;font-weight:700}
-@media(max-width:800px){#hang{width:27%;left:75%;top:8%}.cards{grid-template-columns:1fr}.grove{width:30%;height:25%}}
-</style></head>
+.cave.open{display:grid}
+.panel{max-width:1000px;width:100%;max-height:90vh;overflow:auto;padding:42px;border-radius:28px;background:rgba(9,17,11,.94);border:2px solid #cdb54d;box-shadow:0 25px 80px #000;position:relative}
+.panel h2{font:700 clamp(2.5rem,5vw,5rem) "Brush Script MT","Segoe Script",cursive;color:#ffd84d;margin:0}
+.panel p{font-size:1.1rem;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{padding:18px;border:1px solid #6f6334;border-radius:18px;background:#112419}
+.card h3{color:#ffd84d;overflow-wrap:anywhere}
+.card img,.card video{width:100%;max-height:400px;object-fit:contain;border-radius:12px}
+.card audio{width:100%}
+.card a{color:#ffd84d;overflow-wrap:anywhere}
+.back,.owner-button,.upload,#loginSubmit,#logoutButton{padding:10px 16px;border:0;border-radius:20px;background:#ffd84d;color:#111;font-weight:700;cursor:pointer}
+.back{position:absolute;right:16px;top:16px}
+.owner-button{margin-bottom:12px}
+.upload{display:inline-block;margin:12px 0 22px}
+.upload input{display:none}
+#loginBox input{margin:4px;padding:10px;border:0;border-radius:8px}
+#loginMessage{font-size:.9rem;color:#ffd84d}
+
+@media(max-width:800px){
+  #hang{width:27%;left:75%;top:8%}
+  .cards{grid-template-columns:1fr}
+  .grove{width:30%;height:25%}
+}
+</style>
+</head>
+
 <body>
 <div class="art">
-<div class="title">Mike's World</div>
-<button class="grove g1" data-k="world" aria-label="Mike's World"></button>
-<button class="grove g2" data-k="pics" aria-label="Mike's Pics"></button>
-<button class="grove g3" data-k="movies" aria-label="Movies"></button>
-<button class="grove g4" data-k="music" aria-label="Mike's Music"></button>
-<div id="hang"><img src="assets/hanging-gorilla.png" alt=""></div>
+  <div class="title">Mike's World</div>
+  <button class="grove g1" data-k="world" aria-label="Mike's World"></button>
+  <button class="grove g2" data-k="pics" aria-label="Mike's Pics"></button>
+  <button class="grove g3" data-k="movies" aria-label="Movies"></button>
+  <button class="grove g4" data-k="music" aria-label="Mike's Music"></button>
+  <div id="hang"><img src="assets/hanging-gorilla.png" alt=""></div>
 </div>
-<div class="tunnel" id="tunnel"><div id="run"><img src="assets/hanging-gorilla.png" alt=""></div></div>
-<div class="cave" id="cave"><section class="panel"><button class="back" id="back">Back</button><h2 id="ct"></h2><p id="ci"></p><div class="cards" id="cards"></div></section></div>
+
+<div class="tunnel" id="tunnel">
+  <div id="run"><img src="assets/hanging-gorilla.png" alt=""></div>
+</div>
+
+<div class="cave" id="cave">
+  <section class="panel">
+    <button class="back" id="back">Back</button>
+
+    <button class="owner-button" id="loginButton">Owner login</button>
+
+    <div id="loginBox" hidden>
+      <input id="email" type="email" placeholder="Owner email">
+      <input id="password" type="password" placeholder="Password">
+      <button id="loginSubmit">Log in</button>
+      <button id="logoutButton" hidden>Log out</button>
+      <p id="loginMessage"></p>
+    </div>
+
+    <h2 id="ct"></h2>
+    <p id="ci"></p>
+
+    <label class="upload" id="uploadLabel" hidden>
+      Upload files
+      <input id="fileInput" type="file" multiple>
+    </label>
+
+    <div class="cards" id="cards"></div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const d={
-world:["Mike's World","The main cavern for Mike's interests, stories, favourite things and future blog posts.",["About Mike","Things Past","Featured"]],
-pics:["Mike's Pics","A photo cavern ready for Mike's photographs, captions and featured shots.",["Photo Wall","Captions","Featured Shot"]],
-movies:["Movies","A cave for reviews, ratings and screenshots.",["Reviews","Screenshots","Watch List"]],
-music:["Mike's Music","A cavern for playlists, favourite tracks and the soundtrack to Mike's life.",["Playlists","Currently Playing","Old Favourites"]]};
-const g=document.querySelector("#hang"),t=document.querySelector("#tunnel"),c=document.querySelector("#cave");
+  world:["Mike's World","The main cavern for Mike's interests, stories, favourite things and future blog posts.",["About Mike","Things Past","Featured"]],
+  pics:["Mike's Pics","A photo cavern ready for Mike's photographs, captions and featured shots.",["Photo Wall","Captions","Featured Shot"]],
+  movies:["Movies","A cave for reviews, ratings and screenshots.",["Reviews","Screenshots","Watch List"]],
+  music:["Mike's Music","A cavern for playlists, favourite tracks and the soundtrack to Mike's life.",["Playlists","Currently Playing","Old Favourites"]]
+};
+
+const supabaseClient=window.supabase.createClient(
+  "https://dgkwuowjrfgijwoxbnsx.supabase.co",
+  "sb_publishable_anHGaHA5U8iDFf-LjWZ2qg_41IfXS6v"
+);
+
+const g=document.querySelector("#hang");
+const t=document.querySelector("#tunnel");
+const c=document.querySelector("#cave");
+const ct=document.querySelector("#ct");
+const ci=document.querySelector("#ci");
+const cards=document.querySelector("#cards");
+const back=document.querySelector("#back");
+const loginButton=document.querySelector("#loginButton");
+const loginBox=document.querySelector("#loginBox");
+const email=document.querySelector("#email");
+const password=document.querySelector("#password");
+const loginSubmit=document.querySelector("#loginSubmit");
+const logoutButton=document.querySelector("#logoutButton");
+const loginMessage=document.querySelector("#loginMessage");
+const uploadLabel=document.querySelector("#uploadLabel");
+const fileInput=document.querySelector("#fileInput");
+
+let currentKey="";
+let loggedIn=false;
+
 function go(k,b){
- const r=b.getBoundingClientRect();
- g.style.left=Math.max(2,Math.min(78,(r.left+r.width/2)/innerWidth*100))+"%";
- g.style.top=Math.max(20,Math.min(70,(r.top+r.height*.45)/innerHeight*100))+"%";
- g.classList.remove("swing","beat");void g.offsetWidth;g.classList.add("swing");
- setTimeout(()=>g.classList.add("beat"),900);
- setTimeout(()=>{t.classList.add("on");setTimeout(()=>{t.classList.remove("on");show(k)},3000)},1700);
+  const r=b.getBoundingClientRect();
+  g.style.left=Math.max(2,Math.min(78,(r.left+r.width/2)/innerWidth*100))+"%";
+  g.style.top=Math.max(20,Math.min(70,(r.top+r.height*.45)/innerHeight*100))+"%";
+  g.classList.remove("swing","beat");
+  void g.offsetWidth;
+  g.classList.add("swing");
+  setTimeout(()=>g.classList.add("beat"),1700);
+  setTimeout(()=>{
+    t.classList.add("on");
+    setTimeout(()=>{
+      t.classList.remove("on");
+      show(k);
+    },3000);
+  },1700);
 }
-function show(k){ct.textContent=d[k][0];ci.textContent=d[k][1];cards.innerHTML=d[k][2].map(x=>`<div class="card"><h3>${x}</h3><p>This section is ready for Mike's real content.</p></div>`).join("");c.classList.add("open")}
-document.querySelectorAll(".grove").forEach(b=>b.onclick=()=>go(b.dataset.k,b));
+
+async function show(k){
+  currentKey=k;
+  ct.textContent=d[k][0];
+  ci.textContent=d[k][1];
+
+  cards.innerHTML=d[k][2].map(x=>
+    `<div class="card"><h3>${x}</h3><p>This section is ready for Mike's real content.</p></div>`
+  ).join("");
+
+  const {data,error}=await supabaseClient.storage
+    .from("grove-files")
+    .list(k,{limit:100,sortBy:{column:"name",order:"asc"}});
+
+  if(error){
+    console.error(error);
+    c.classList.add("open");
+    return;
+  }
+
+  data.forEach(file=>{
+    const path=`${k}/${file.name}`;
+    const {data:publicFile}=supabaseClient.storage
+      .from("grove-files").getPublicUrl(path);
+
+    const card=document.createElement("div");
+    card.className="card";
+
+    const title=document.createElement("h3");
+    title.textContent=file.name;
+    card.appendChild(title);
+
+    if(/\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)){
+      const image=document.createElement("img");
+      image.src=publicFile.publicUrl;
+      image.alt=file.name;
+      card.appendChild(image);
+    }else if(/\.(mp4|webm|mov)$/i.test(file.name)){
+      const video=document.createElement("video");
+      video.src=publicFile.publicUrl;
+      video.controls=true;
+      card.appendChild(video);
+    }else if(/\.(mp3|wav|ogg)$/i.test(file.name)){
+      const audio=document.createElement("audio");
+      audio.src=publicFile.publicUrl;
+      audio.controls=true;
+      card.appendChild(audio);
+    }else{
+      const link=document.createElement("a");
+      link.href=publicFile.publicUrl;
+      link.target="_blank";
+      link.textContent="Open or download file";
+      card.appendChild(link);
+    }
+
+    cards.appendChild(card);
+  });
+
+  c.classList.add("open");
+}
+
+loginButton.onclick=()=>loginBox.hidden=!loginBox.hidden;
+
+loginSubmit.onclick=async()=>{
+  const {error}=await supabaseClient.auth.signInWithPassword({
+    email:email.value,
+    password:password.value
+  });
+  loginMessage.textContent=error?error.message:"Owner logged in.";
+};
+
+logoutButton.onclick=async()=>{
+  await supabaseClient.auth.signOut();
+};
+
+supabaseClient.auth.onAuthStateChange((_event,session)=>{
+  loggedIn=Boolean(session);
+  uploadLabel.hidden=!loggedIn;
+  logoutButton.hidden=!loggedIn;
+  loginSubmit.hidden=loggedIn;
+  loginMessage.textContent=loggedIn?"Owner is logged in.":"";
+});
+
+fileInput.onchange=async event=>{
+  if(!loggedIn||!currentKey)return;
+
+  for(const file of event.target.files){
+    const safeName=file.name.replace(/[^\w.\- ]/g,"_");
+    const path=`${currentKey}/${crypto.randomUUID()}-${safeName}`;
+
+    const {error}=await supabaseClient.storage
+      .from("grove-files")
+      .upload(path,file);
+
+    if(error)alert("Upload failed: "+error.message);
+  }
+
+  fileInput.value="";
+  await show(currentKey);
+};
+
+document.querySelectorAll(".grove").forEach(b=>{
+  b.onclick=()=>go(b.dataset.k,b);
+});
+
 back.onclick=()=>c.classList.remove("open");
-document.addEventListener("contextmenu",e=>{e.preventDefault();alert("Private Control Room — secure owner login will be added next.");});
-</script></body></html>
+</script>
+</body>
+</html>
