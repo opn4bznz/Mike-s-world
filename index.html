@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mike's World — Redirect</title>
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <p>Loading Mike's World...</p>
+  <script>
+    // Quick loader: fetch the existing site HTML, rewrite asset paths from "assets/..." to "Mikes-World-v5/assets/..."
+    // and write it into the root document so GitHub Pages can serve the site without copying large binary files.
+    (function(){
+      const path = 'Mikes-World-v5/index.html';
+      fetch(path).then(r=>{
+        if(!r.ok) throw new Error('Fetch failed');
+        return r.text();
+      }).then(html=>{
+        // Replace occurrences of (" or ' or ()assets/ to the subfolder path
+        html = html.replace(/(["'\(])assets\//g, '$1Mikes-World-v5/assets/');
+        document.open();
+        document.write(html);
+        document.close();
+      }).catch(()=>{
+        // Fallback: navigate to the folder URL
+        location.href = './Mikes-World-v5/';
+      });
+    })();
+  </script>
+</body>
+</html>
