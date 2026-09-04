@@ -45,6 +45,8 @@ html,body{margin:0;padding:0;height:100%;background:#071a10;color:#fff;font-fami
 .card h3{color:#ffd84d;overflow-wrap:anywhere}
 .card img,.card video{width:100%;max-height:400px;object-fit:contain;border-radius:12px}
 .card audio{width:100%}
+.card[data-media="audio"],.card[data-media="video"]{cursor:pointer}
+.card[data-media="audio"]:hover,.card[data-media="video"]:hover{border-color:#ffd84d}
 .card a{color:#ffd84d;overflow-wrap:anywhere}
 .back,.owner-button,.upload,#loginSubmit,#logoutButton{padding:10px 16px;border:0;border-radius:20px;background:#ffd84d;color:#111;font-weight:700;cursor:pointer}
 .back{position:absolute;right:16px;top:16px}
@@ -192,11 +194,24 @@ async function show(k){
       const video=document.createElement("video");
       video.src=publicFile.publicUrl;
       video.controls=true;
+      video.preload="metadata";
+      video.playsInline=true;
+      card.dataset.media="video";
+      card.addEventListener("click",event=>{
+        if(event.target.closest("video"))return;
+        video.paused?video.play():video.pause();
+      });
       card.appendChild(video);
     }else if(/\.(mp3|wav|ogg)$/i.test(file.name)){
       const audio=document.createElement("audio");
       audio.src=publicFile.publicUrl;
       audio.controls=true;
+      audio.preload="metadata";
+      card.dataset.media="audio";
+      card.addEventListener("click",event=>{
+        if(event.target.closest("audio"))return;
+        audio.paused?audio.play():audio.pause();
+      });
       card.appendChild(audio);
     }else{
       const link=document.createElement("a");
