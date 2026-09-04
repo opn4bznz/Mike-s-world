@@ -6,8 +6,8 @@
 <title>Mike's World</title>
 
 <style>
-html,body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:auto;background:#071a10;color:#fff;font-family:Arial,sans-serif}
-.art{position:relative;height:100vh;height:100dvh;min-height:0;background:url("assets/mikes-world-concept.png") center top/cover no-repeat;overflow:hidden}
+html,body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:scroll;background:#071a10;color:#fff;font-family:Arial,sans-serif}
+.art{position:relative;height:120vh;height:120dvh;min-height:0;background:url("assets/mikes-world-concept.png") center top/cover no-repeat;overflow:hidden}
 .title{position:absolute;top:3%;left:50%;transform:translateX(-50%);font:700 clamp(3rem,7vw,7rem) "Brush Script MT","Segoe Script",cursive;color:#1264c0;text-shadow:0 3px #fff,0 7px 18px #001b44;z-index:3;white-space:nowrap}
 .grove{position:absolute;width:23%;height:28%;z-index:4;border:0;background:transparent;cursor:pointer;border-radius:45%}
 .grove:hover{box-shadow:0 0 30px rgba(255,220,60,.35);outline:3px solid rgba(255,220,60,.45)}
@@ -52,8 +52,6 @@ html,body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:auto;background:
 .upload input{display:none}
 #loginBox input{margin:4px;padding:10px;border:0;border-radius:8px}
 #loginMessage{font-size:.9rem;color:#ffd84d}
-#scrollButton{position:fixed;right:20px;bottom:20px;z-index:10;padding:10px 16px;border:0;border-radius:20px;background:#ffd84d;color:#111;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
-
 @media(max-width:800px){
   #hang{width:27%;left:75%;top:8%}
   .cards{grid-template-columns:1fr}
@@ -71,8 +69,6 @@ html,body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:auto;background:
   <button class="grove g4" data-k="music" aria-label="Mike's Music"></button>
   <div id="hang"><img src="assets/hanging-gorilla.png" alt=""></div>
 </div>
-
-<button id="scrollButton" type="button" aria-label="Scroll to the bottom">Scroll down</button>
 
 <div class="tunnel" id="tunnel">
   <div id="run"><img src="assets/hanging-gorilla.png" alt=""></div>
@@ -134,7 +130,6 @@ const logoutButton=document.querySelector("#logoutButton");
 const loginMessage=document.querySelector("#loginMessage");
 const uploadLabel=document.querySelector("#uploadLabel");
 const fileInput=document.querySelector("#fileInput");
-const scrollButton=document.querySelector("#scrollButton");
 
 let currentKey="";
 let loggedIn=false;
@@ -262,16 +257,6 @@ document.querySelectorAll(".grove").forEach(b=>{
 
 back.onclick=()=>c.classList.remove("open");
 
-scrollButton.onclick=()=>{
-  const atBottom=window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-2;
-  window.scrollTo({top:atBottom?0:document.documentElement.scrollHeight,behavior:"smooth"});
-};
-
-window.addEventListener("scroll",()=>{
-  const atBottom=window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-2;
-  scrollButton.textContent=atBottom?"Scroll up":"Scroll down";
-  scrollButton.setAttribute("aria-label",atBottom?"Scroll to the top":"Scroll to the bottom");
-});
 </script>
 </body>
 </html>
