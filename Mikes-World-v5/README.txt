@@ -1,0 +1,1 @@
+V5 uses the hanging upper-right gorilla as the interactive character. The original concept remains the background artwork; the extracted gorilla layer animates over it. This is still a front-end prototype; secure login and content storage come next.
