@@ -43,6 +43,9 @@ html,body{margin:0;padding:0;height:100%;background:#071a10;color:#fff;font-fami
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .card{padding:18px;border:1px solid #6f6334;border-radius:18px;background:#112419}
 .card h3{color:#ffd84d;overflow-wrap:anywhere}
+.card.things-past{background:linear-gradient(135deg,#ef476f,#ffd166 48%,#06d6a0);border-color:#fff1a8;color:#24112b;box-shadow:0 8px 24px rgba(239,71,111,.3)}
+.card.things-past h3{font:700 2rem "Brush Script MT","Segoe Script",cursive;color:#fff;text-shadow:2px 2px 0 #8d2860,0 0 12px rgba(255,255,255,.7)}
+.card.things-past p{color:#24112b;font-weight:700}
 .card img,.card video{width:100%;max-height:400px;object-fit:contain;border-radius:12px}
 .card audio{width:100%}
 .card[data-media="audio"],.card[data-media="video"]{cursor:pointer}
@@ -107,7 +110,7 @@ html,body{margin:0;padding:0;height:100%;background:#071a10;color:#fff;font-fami
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const d={
-  world:["Mike's World","The main cavern for Mike's interests, stories, favourite things and future blog posts.",["About Mike","Things Past","Featured"]],
+  world:["Mike's World","The main cavern for Mike's interests, stories, favourite things and future blog posts.",["Things Past"]],
   pics:["Mike's Pics","A photo cavern ready for Mike's photographs, captions and featured shots.",["Photo Wall"]],
   movies:["Movies","A cave for reviews, ratings and screenshots.",["Reviews","Screenshots","Watch List"]],
   music:["Mike's Music","A cavern for playlists, favourite tracks and the soundtrack to Mike's life.",["Playlists"]]
@@ -161,7 +164,7 @@ async function show(k){
   ci.textContent=d[k][1];
 
   cards.innerHTML=d[k][2].map(x=>
-    `<div class="card"><h3>${x}</h3><p>This section is ready for Mike's real content.</p></div>`
+    `<div class="card${x==="Things Past"?" things-past":""}"><h3>${x}</h3><p>This section is ready for Mike's real content.</p></div>`
   ).join("");
 
   const {data,error}=await supabaseClient.storage
