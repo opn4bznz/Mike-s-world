@@ -55,6 +55,32 @@ html,body{margin:0;padding:0;height:100%;background:#071a10;color:#fff;font-fami
 .world-garden .flower-one{left:12%;top:34%;transform:scale(1.15)}
 .world-garden .flower-two{right:13%;top:42%;transform:scale(.85) rotate(18deg)}
 .world-garden .flower-three{left:48%;bottom:18%;transform:scale(1.35) rotate(-12deg)}
+.pirate{position:absolute;right:7%;bottom:18px;width:145px;height:245px;filter:drop-shadow(0 8px 6px rgba(0,0,0,.4));transform:scale(.9);transform-origin:bottom right}
+.pirate .hat{position:absolute;top:0;left:29px;width:82px;height:28px;background:#17141a;border-radius:50% 50% 18% 18%;transform:rotate(-5deg);z-index:3}
+.pirate .hat::before{content:"";position:absolute;left:-14px;top:20px;width:110px;height:13px;background:#111016;border-radius:50%;box-shadow:0 4px 0 #b23a3a}
+.pirate .hat::after{content:"";position:absolute;right:9px;top:-13px;width:25px;height:20px;background:#b23a3a;border-radius:50% 50% 0 50%;transform:rotate(28deg)}
+.pirate .head{position:absolute;top:29px;left:40px;width:63px;height:67px;background:#d89568;border:3px solid #6b3529;border-radius:46% 46% 42% 42%;z-index:2}
+.pirate .head::before{content:"";position:absolute;left:3px;bottom:-11px;width:53px;height:22px;background:#352323;border-radius:0 0 50% 50%;box-shadow:0 -7px 0 #d89568}
+.pirate .eye-patch{position:absolute;left:30px;top:16px;width:25px;height:17px;background:#17141a;border-radius:50%;transform:rotate(-8deg);z-index:3}
+.pirate .eye-patch::after{content:"";position:absolute;left:-34px;top:8px;width:70px;height:3px;background:#17141a;transform:rotate(7deg)}
+.pirate .nose{position:absolute;left:22px;top:33px;width:12px;height:13px;border-right:3px solid #873f32;border-bottom:3px solid #873f32;border-radius:0 0 8px 0;z-index:3}
+.pirate .body{position:absolute;top:91px;left:25px;width:92px;height:94px;background:#853b35;border:3px solid #3b2025;border-radius:30px 30px 12px 12px;z-index:1}
+.pirate .body::before{content:"";position:absolute;left:35px;top:0;height:88px;border-left:4px solid #e1b75a;box-shadow:10px 0 0 -1px #e1b75a}
+.pirate .belt{position:absolute;left:25px;top:157px;width:92px;height:13px;background:#382426;border:2px solid #d19b42;z-index:3;transform:rotate(-2deg)}
+.pirate .buckle{position:absolute;left:64px;top:158px;width:15px;height:12px;border:3px solid #e7bc54;z-index:4}
+.pirate .arm{position:absolute;top:101px;width:27px;height:79px;background:#853b35;border:3px solid #3b2025;border-radius:18px;z-index:0}
+.pirate .arm-left{left:9px;transform:rotate(25deg)}
+.pirate .arm-right{right:4px;transform:rotate(-24deg)}
+.pirate .hand{position:absolute;top:167px;right:0;width:22px;height:22px;background:#d89568;border:3px solid #6b3529;border-radius:50%;z-index:2}
+.pirate .leg{position:absolute;top:177px;width:25px;height:57px;background:#26334b;border:3px solid #171d2b;z-index:0}
+.pirate .leg-left{left:46px;border-radius:0 0 8px 8px}
+.pirate .peg{position:absolute;left:82px;top:179px;width:25px;height:57px;background:#9b5d30;border:3px solid #55321f;border-radius:5px 5px 50% 50%;transform:rotate(-5deg);z-index:0}
+.pirate .peg::after{content:"";position:absolute;left:-11px;bottom:-7px;width:39px;height:15px;background:#6f3c22;border-radius:50%;transform:rotate(5deg)}
+.pirate .parrot{position:absolute;top:84px;right:0;width:39px;height:48px;background:#db3f39;border:3px solid #62242c;border-radius:55% 55% 45% 45%;z-index:4;transform:rotate(8deg)}
+.pirate .parrot::before{content:"";position:absolute;left:9px;top:-21px;width:24px;height:25px;background:#28a7a0;border:3px solid #176263;border-radius:50% 50% 45% 45%}
+.pirate .parrot::after{content:"";position:absolute;left:25px;top:-10px;border-left:12px solid #efb33c;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.pirate .parrot-eye{position:absolute;left:24px;top:-13px;width:5px;height:5px;background:#111;border-radius:50%;z-index:5}
+.pirate .parrot-feet{position:absolute;left:8px;bottom:-7px;width:22px;border-top:4px solid #e7b83c;z-index:5}
 .panel h2{font:700 clamp(2.5rem,5vw,5rem) "Brush Script MT","Segoe Script",cursive;color:#ffd84d;margin:0}
 .panel p{font-size:1.1rem;line-height:1.6}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -109,6 +135,13 @@ html,body{margin:0;padding:0;height:100%;background:#071a10;color:#fff;font-fami
       <span class="flower flower-one"></span>
       <span class="flower flower-two"></span>
       <span class="flower flower-three"></span>
+      <div class="pirate" role="img" aria-label="Pirate captain with an eye patch, wooden leg, and parrot">
+        <span class="hat"></span><span class="head"><span class="eye-patch"></span><span class="nose"></span></span>
+        <span class="body"></span><span class="belt"></span><span class="buckle"></span>
+        <span class="arm arm-left"></span><span class="arm arm-right"></span><span class="hand"></span>
+        <span class="leg leg-left"></span><span class="peg"></span>
+        <span class="parrot"><span class="parrot-eye"></span><span class="parrot-feet"></span></span>
+      </div>
     </div>
     <button class="back" id="back">Back</button>
 
