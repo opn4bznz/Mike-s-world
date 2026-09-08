@@ -38,6 +38,23 @@ html,body{margin:0;background:#071a10;color:#fff;font-family:Arial,sans-serif}
 .cave{position:fixed;inset:0;z-index:30;display:none;place-items:center;padding:5vw;background:radial-gradient(circle,#4e3822,#1c130c 60%,#050403)}
 .cave.open{display:grid}
 .panel{max-width:1000px;width:100%;max-height:90vh;overflow:auto;padding:42px;border-radius:28px;background:rgba(9,17,11,.94);border:2px solid #cdb54d;box-shadow:0 25px 80px #000;position:relative}
+.panel.world-panel{background:linear-gradient(135deg,rgba(8,31,20,.96),rgba(20,58,31,.94) 55%,rgba(8,25,17,.97));overflow:hidden}
+.panel.world-panel> *:not(.world-garden){position:relative;z-index:1}
+.world-garden{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;opacity:.95}
+.world-garden .vine{position:absolute;width:130px;height:250px;border-left:4px solid #2e8b57;border-bottom:4px solid #2e8b57;border-radius:0 0 0 100%;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35));transform-origin:top left}
+.world-garden .vine::before,.world-garden .vine::after{content:"";position:absolute;width:48px;height:24px;background:linear-gradient(135deg,#65c466,#176b45);border-radius:100% 0 100% 0;box-shadow:0 0 0 2px rgba(137,221,111,.2)}
+.world-garden .vine::before{left:-25px;top:62px;transform:rotate(-32deg)}
+.world-garden .vine::after{left:4px;top:128px;transform:rotate(28deg) scale(.85)}
+.world-garden .vine-left{left:-18px;top:8px;transform:rotate(-8deg)}
+.world-garden .vine-right{right:-18px;top:18px;transform:scaleX(-1) rotate(-8deg)}
+.world-garden .leaf{position:absolute;width:82px;height:40px;background:linear-gradient(135deg,#8bd450,#217346 70%);border-radius:100% 0 100% 0;box-shadow:inset 8px -4px 0 rgba(9,61,39,.35),0 4px 8px rgba(0,0,0,.2)}
+.world-garden .leaf-a{left:34px;bottom:26px;transform:rotate(-28deg) scale(1.25)}
+.world-garden .leaf-b{right:28px;bottom:72px;transform:rotate(24deg) scale(1.35)}
+.world-garden .leaf-c{left:46%;top:8px;transform:rotate(18deg) scale(.9)}
+.world-garden .flower{position:absolute;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,#ffe58a 0 12%,transparent 14%),radial-gradient(circle at 50% 0,#ff6f91 0 30%,transparent 32%),radial-gradient(circle at 100% 50%,#ff9f1c 0 30%,transparent 32%),radial-gradient(circle at 50% 100%,#e94f9a 0 30%,transparent 32%),radial-gradient(circle at 0 50%,#ff7f51 0 30%,transparent 32%);filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}
+.world-garden .flower-one{left:12%;top:34%;transform:scale(1.15)}
+.world-garden .flower-two{right:13%;top:42%;transform:scale(.85) rotate(18deg)}
+.world-garden .flower-three{left:48%;bottom:18%;transform:scale(1.35) rotate(-12deg)}
 .panel h2{font:700 clamp(2.5rem,5vw,5rem) "Brush Script MT","Segoe Script",cursive;color:#ffd84d;margin:0}
 .panel p{font-size:1.1rem;line-height:1.6}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -80,6 +97,16 @@ html,body{margin:0;background:#071a10;color:#fff;font-family:Arial,sans-serif}
 
 <div class="cave" id="cave">
   <section class="panel">
+    <div class="world-garden" aria-hidden="true">
+      <span class="vine vine-left"></span>
+      <span class="vine vine-right"></span>
+      <span class="leaf leaf-a"></span>
+      <span class="leaf leaf-b"></span>
+      <span class="leaf leaf-c"></span>
+      <span class="flower flower-one"></span>
+      <span class="flower flower-two"></span>
+      <span class="flower flower-three"></span>
+    </div>
     <button class="back" id="back">Back</button>
 
     <button class="owner-button" id="loginButton">Owner login</button>
@@ -107,7 +134,7 @@ html,body{margin:0;background:#071a10;color:#fff;font-family:Arial,sans-serif}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const d={
-  world:["Mike's World","The main cavern for Mike's interests, stories, favourite things and future blog posts.",["About Mike","Things Past","Featured"]],
+  world:["Mike's World","The main cavern for Mike's interests, stories, favourite things and future blog posts.",["Things Past"]],
   pics:["Mike's Pics","A photo cavern ready for Mike's photographs, captions and featured shots.",["Photo Wall"]],
   movies:["Movies","A cave for reviews, ratings and screenshots.",[]],
   music:["Mike's Music","A cavern for playlists, favourite tracks and the soundtrack to Mike's life.",["Playlists","Currently Playing","Old Favourites"]]
@@ -121,6 +148,7 @@ const supabaseClient=window.supabase.createClient(
 const g=document.querySelector("#hang");
 const t=document.querySelector("#tunnel");
 const c=document.querySelector("#cave");
+const panel=document.querySelector(".panel");
 const ct=document.querySelector("#ct");
 const ci=document.querySelector("#ci");
 const cards=document.querySelector("#cards");
@@ -157,6 +185,7 @@ function go(k,b){
 
 async function show(k){
   currentKey=k;
+  panel.classList.toggle("world-panel",k==="world");
   ct.textContent=d[k][0];
   ci.textContent=d[k][1];
 
