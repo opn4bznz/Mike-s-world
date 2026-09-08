@@ -53,7 +53,8 @@ html,body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:scroll;backgroun
 .world-garden .flower-one{left:12%;top:34%;transform:scale(1.15)}
 .world-garden .flower-two{right:13%;top:42%;transform:scale(.85) rotate(18deg)}
 .world-garden .flower-three{left:48%;bottom:18%;transform:scale(1.35) rotate(-12deg)}
-.pirate{position:absolute;right:5%;bottom:16px;width:155px;height:255px;filter:drop-shadow(0 8px 6px rgba(0,0,0,.4));transform:scale(.92);transform-origin:bottom right}
+.pirate{display:none;position:absolute;right:5%;bottom:16px;width:155px;height:255px;filter:drop-shadow(0 8px 6px rgba(0,0,0,.4));transform:scale(.92);transform-origin:bottom right}
+.panel.world-panel .pirate{display:block}
 .pirate .hat{position:absolute;top:0;left:25px;width:91px;height:34px;background:linear-gradient(#29232a,#0e0c12);border-radius:50% 50% 18% 18%;transform:rotate(-5deg);z-index:3}
 .pirate .hat::before{content:"";position:absolute;left:-18px;top:25px;width:125px;height:15px;background:#111016;border-radius:50%;box-shadow:0 4px 0 #b23a3a}
 .pirate .hat::after{content:"";position:absolute;right:7px;top:-17px;width:31px;height:28px;background:#b23a3a;border-radius:50% 50% 0 50%;box-shadow:8px -6px 0 -5px #f0d18a;transform:rotate(28deg)}
